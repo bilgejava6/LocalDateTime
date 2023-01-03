@@ -1,5 +1,7 @@
 package com.muhammet;
 
+import static com.muhammet.constants.MyDateTime.*;
+
 import java.time.*;
 import java.util.Date;
 
@@ -100,7 +102,7 @@ public class Main {
         Long start_nn = System.nanoTime();
         Instant start_ins = Instant.now();
         long toplam =0;
-        for(long i=0;i<20_000_000_000l;i++){
+        for(long i=0;i<2_000_000_000l;i++){
             toplam++;
         }
         System.out.println("Toplam....: "+ toplam);
@@ -114,6 +116,24 @@ public class Main {
         //System.out.println("INst Nano....: "+ duration.getNano());
         System.out.println("INst Mili....: "+ duration.toMillis());
         System.out.println("INst Nano....: "+ duration.toNanos());
+
+        /**
+         * static Hazır zaman dilimlerimizi kullanlmak
+         */
+        LocalDate localDate2 = LocalDate.now();
+        Date date1 = new Date();
+        /**
+         * DİKKAT!!!
+         * zaman dilimlerinizi hangi sayısal değerler üzerinden kurguladığınıza dikkat edin.
+         * zira aşağıda yazdığım şekil hatalıdır.
+         * localDate2.plusDays(MyDateTime.DAKIKA) -> DAKIKA Ms cinsinden olduğu için
+         */
+        // suanki zaman
+        Long now = System.currentTimeMillis();
+        Long newtime = now+GUN;
+        System.out.println(new Date(newtime));
+
+
 
 
 
