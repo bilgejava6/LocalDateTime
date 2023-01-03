@@ -66,5 +66,58 @@ public class Main {
         System.out.println("lond...: "+ZonedDateTime.now(ZoneId.of("Europe/London")));
         System.out.println("ist....: "+ZonedDateTime.now(ZoneId.of("Europe/Istanbul")));
 
+        /**
+         * LocalDate, Time Manipülasyonları ve Period Kullanımı
+         */
+        LocalDate localDate1 = LocalDate.now();
+        System.out.print("Gün olarak 10 gün sonrası....: ");
+        System.out.println(localDate1.plusDays(10));
+        System.out.print("hafta olarak 2 hafta sonrası....: ");
+        System.out.println(localDate1.plusWeeks(2));
+        System.out.print("ay olarak 2 ay öncesi...: ");
+        System.out.println(localDate1.minusMonths(2));
+
+        /**
+         * eklenilecek zaman dilimi, gün-ay-hafta-yıl v.s olabiliyorken her işlem
+         * için ayrı ayrı kontrol sağlama gerekecek.
+         * DİKKAT!!!!
+         * mevcut zamana ait işlemlerde, plus, minus v.s.
+         * hiç birisi zamanı değiştirmez. sadece işlem yapıldığı method eklediği
+         * yada çıkarttığı zamanı döner.
+         */
+        Period period = Period.ofWeeks(6);
+        System.out.println("Mevcut date...: "+ localDate1);
+        System.out.println("period kullanımı....: "+localDate1.plus(period));
+        System.out.println("Mevcut date...: "+ localDate1);
+        localDate1 = localDate1.plus(period);
+        System.out.println("Mevcut date...: "+ localDate1);
+
+        /**
+         * Zamanı takip etmek
+         *
+         */
+        Long start_ms = System.currentTimeMillis();
+        Long start_nn = System.nanoTime();
+        Instant start_ins = Instant.now();
+        long toplam =0;
+        for(long i=0;i<20_000_000_000l;i++){
+            toplam++;
+        }
+        System.out.println("Toplam....: "+ toplam);
+        Long end_ms = System.currentTimeMillis();
+        Long end_nn = System.nanoTime();
+        Instant end_ins = Instant.now();
+        System.out.println("Milisaniye....: "+ (end_ms-start_ms));
+        System.out.println("Nanosaniye....: "+ (end_nn-start_nn));
+        Duration duration = Duration.between(start_ins,end_ins);
+        //System.out.println("INst Mili....: "+ duration.getSeconds());
+        //System.out.println("INst Nano....: "+ duration.getNano());
+        System.out.println("INst Mili....: "+ duration.toMillis());
+        System.out.println("INst Nano....: "+ duration.toNanos());
+
+
+
+
+
     }
 }
